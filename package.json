@@ -1,6 +1,8 @@
 {
-  "name": "ascii-image",
+  "name": "ascii-mages",
   "version": "0.1.0",
+  "author": "Alexander Evsikov",
+  "description": "App for converting IMG to ASCII",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,6 +11,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "sass": "^1.32.2",
+    "sass-loader": "^10.1.1",
     "vue": "^2.6.11"
   },
   "devDependencies": {
