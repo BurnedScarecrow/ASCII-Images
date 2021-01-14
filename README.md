@@ -21,7 +21,7 @@
 * [Node.js] - Evented I/O for the backend
 * [Vue JS] - Best frontend framework ever!
 
-[Check it]: <https://github.com/BurnedScarecrow/>
+[Check it]: <https://burnedscarecrow.github.io/ASCII-Images/>
 [Node.js]: <https://node.org/en>
 [vue JS]: <https://vuejs.org/>
 
