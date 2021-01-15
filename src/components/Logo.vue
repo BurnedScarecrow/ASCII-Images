@@ -16,14 +16,15 @@
       <span>{{ logo.s2 }}</span>
     </div>
     <nav>
-      <span @click="showConverter()">Конвертер</span>
-      <span @click="showGallery()">Галерея</span>
+      <span @click="showConverter()" ref="converter">Конвертер</span>
+      <span @click="showGallery()" ref="gallery">Галерея</span>
     </nav>
   </header>
 </template>
 
 <script>
 export default {
+  props: ["activeTab"],
   data() {
     return {
       logo: {
@@ -51,6 +52,26 @@ export default {
       E: ["ȅ", "ȇ", "ё", "έ", "з", "e", "?", "$", "%", "!"],
       S2: ["ś", "ŝ", "ş", "š", "ș", "s", "?", "$", "%", "!"]
     };
+  },
+  watch: {
+    activeTab: function(val) {
+      if (val == "converter") {
+        this.$refs.converter.style.background = "var(--normal-text)";
+        this.$refs.converter.style.color = "var(--bgColor)";
+        this.$refs.gallery.style.background = "var(--bgColor)";
+        this.$refs.gallery.style.color = "var(--normal-text)";
+      } else if (val == "gallery") {
+        this.$refs.gallery.style.background = "var(--normal-text)";
+        this.$refs.gallery.style.color = "var(--bgColor)";
+        this.$refs.converter.style.background = "var(--bgColor)";
+        this.$refs.converter.style.color = "var(--normal-text)";
+      } else {
+        this.$refs.converter.style.background = "var(--bgColor)";
+        this.$refs.converter.style.color = "var(--normal-text)";
+        this.$refs.gallery.style.background = "var(--bgColor)";
+        this.$refs.gallery.style.color = "var(--normal-text)";
+      }
+    }
   },
   mounted() {
     let anim_1, anim_2, anim_3, anim_4, anim_5;
@@ -241,7 +262,7 @@ nav {
     padding: 5px;
     border-radius: 5px;
     text-align: center;
-    border: 1px solid var(--normal-text);
+    border: 1.7px solid var(--normal-text);
     cursor: pointer;
     transition: 0.3s;
 
