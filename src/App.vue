@@ -142,7 +142,6 @@ export default {
       } else {
         this.comp = "gallery";
         document.getElementById("header").style.height = "80px";
-        this.$refs.header.slideDownOn();
       }
     },
 
@@ -159,7 +158,6 @@ export default {
       } else {
         this.comp = "converter";
         document.getElementById("header").style.height = "80px";
-        this.$refs.header.slideDownOn();
       }
     },
 
