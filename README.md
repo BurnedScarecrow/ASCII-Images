@@ -4,18 +4,19 @@
 > and some information about the process of converting images to text
 > Hope, you'd enjoy..
 
-## It is already likely deployed on GitHub Pages. [Check it]!  
+## It is already deployed on GitHub Pages. [Check it]!  
 >Not all functions are ready to be used yet, but I'm in process..  
 >If you are interested in this application or have an idea to embody here, let me know.
 
 ## Ready
   - Basic UI
   - Converter
+  - Gallery (New)
 ## In progress
-  - Gallery
-## Todos
  - Write an article about ASCII Art
  - Create new section for "Question"
+## Todos
+ - Some UI improvements
 
 ### Tech
 * [Node.js] - Evented I/O for the backend

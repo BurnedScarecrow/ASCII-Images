@@ -4,6 +4,7 @@
       :activeTab="comp"
       @showGallery="showGallery()"
       @showConverter="showConverter()"
+      @hideAll="hideAll()"
       ref="header"
       id="header"
     />
@@ -105,17 +106,17 @@ export default {
   },
   mounted() {
     document.addEventListener("scroll", this.handleScroll);
-    document.getElementById("header").style.height = "100vh";
+    document.getElementById("header").style.height = window.innerHeight + "px";
   },
   methods: {
     toast: function(message, time) {
       this.msg = message;
       let label = document.getElementById("popUp");
-      label.style.left = 170 + "px";
+      label.style.transform = "translateX(calc(0% + 20px))";
       label.style.opacity = "1";
 
       setTimeout(() => {
-        label.style.left = "-300px";
+        label.style.transform = "translateX(-100%)";
         label.style.opacity = "0";
       }, time || 2000);
     },
@@ -133,31 +134,40 @@ export default {
       this.copyEnabled = false;
     },
     showGallery: function() {
-      this.toast(
-        "Галерея ещё не готова. Разработчик спит. <br> <img style='margin:0 auto;'width='150px' src='https://psv4.userapi.com/c856224/u119533131/docs/d4/7406743ccc65/god_night.png?extra=aqCTO_l7YPB2nWrwPb2vVvohicbbL_ta4SR6sZT-JTH0dJpkS7cxauGWLXfCf3ZRNsXKJLg-1WfBLvVOHh0lQcUVKMM9AMPNJBE1M6qxp3-5DrS_1PbbsNlCBtc4cScTxLqsypgu47iccVEk2orXyO0LgQ'>",
-        3000
-      );
-      // if (this.comp == "gallery") {
-      //   this.comp = "";
-      //   document.getElementById("header").style.height = "100vh";
-      // } else {
-      //   this.comp = "gallery";
-      //   document.getElementById("header").style.height = "80px";
-      // }
+      if (this.comp == "gallery") {
+        this.comp = "";
+        document.getElementById("header").style.height =
+          window.innerHeight + "px";
+        this.$refs.header.slideDownOff();
+      } else {
+        this.comp = "gallery";
+        document.getElementById("header").style.height = "80px";
+        this.$refs.header.slideDownOn();
+      }
     },
 
     showHelp: function() {
-      this.toast(`Этот раздел ещё только проектируется. 😞`);
+      this.toast(`Скоро тут что-то будет`);
     },
 
     showConverter: function() {
       if (this.comp == "converter") {
         this.comp = "";
-        document.getElementById("header").style.height = "100vh";
+        document.getElementById("header").style.height =
+          window.innerHeight + "px";
+        this.$refs.header.slideDownOff();
       } else {
         this.comp = "converter";
         document.getElementById("header").style.height = "80px";
+        this.$refs.header.slideDownOn();
       }
+    },
+
+    hideAll: function() {
+      this.comp = "";
+      document.getElementById("header").style.height =
+        window.innerHeight + "px";
+      this.$refs.header.slideDownOff();
     },
 
     handleScroll: function() {
@@ -212,7 +222,8 @@ body {
   position: fixed;
   display: flex;
   z-index: 9000;
-  width: 295px;
+  max-width: 295px;
+  width: fit-content;
   padding: 10px 20px;
   justify-content: center;
   align-items: center;
@@ -224,9 +235,9 @@ body {
   font-size: 1.1em;
   letter-spacing: 1px;
   text-align: justify;
-  left: -300px;
-  bottom: 20px;
-  transform: translate(-50%, 0%);
+  left: 0px;
+  bottom: 30px;
+  transform: translateX(-100%);
   opacity: 0;
   transition: all 0.3s;
 

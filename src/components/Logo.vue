@@ -19,17 +19,6 @@
       <span @click="showConverter()">Конвертер</span>
       <span @click="showGallery()">Галерея</span>
     </nav>
-    <!-- <span>{{ A1 }}</span>
-    <span>{{ S1 }}</span>
-    <span>{{ C }}</span>
-    <span>{{ I1 }}</span>
-    <span>{{ I2 }}</span>
-    <span>{{ I3 }}</span>
-    <span>{{ M }}</span>
-    <span>{{ A2 }}</span>
-    <span>{{ G }}</span>
-    <span>{{ E }}</span>
-    <span>{{ S2 }}</span> -->
   </header>
 </template>
 
@@ -38,45 +27,160 @@ export default {
   data() {
     return {
       logo: {
-        a1: "?",
-        s1: "?",
-        c: "?",
-        i1: "?",
-        i2: "?",
-        i3: "?",
-        m: "?",
-        a2: "?",
-        g: "?",
-        e: "?",
-        s2: "?"
+        a1: "",
+        s1: "",
+        c: "",
+        i1: "",
+        i2: "",
+        i3: "",
+        m: "",
+        a2: "",
+        g: "",
+        e: "",
+        s2: ""
       },
-      A1: ["Ӕ", "Å", "Ä", "Ã", "Â", "Á", "Ą", "4", "A"],
-      S1: ["Ś", "Ŝ", "Ş", "$", "Ș", "Ş", "5", "S"],
-      C: ["Ç", "Ć", "Ĉ", "Ċ", "Č", "Č", "<", "C"],
-      I1: ["1", "1", "Ì", "Í", "Î", "Ï", "Ĭ", "ĺ", "I"],
-      I2: ["1", "1", "Ì", "Í", "Î", "Ï", "Ĭ", "ĺ", "I"],
-      I3: ["1", "1", "Ì", "Í", "Î", "Ï", "Ĭ", "ĺ", "I"],
-      M: ["μ", "Ѧ", "ҧ", "м", "m"],
-      A2: ["@", "à", "á", "â", "ã", "ä", "å", "a"],
-      G: ["ĝ", "&", "ğ", "ġ", "8", "ǵ", "9", "g"],
-      E: ["ȅ", "ȇ", "ё", "έ", "з", "e"],
-      S2: ["ś", "ŝ", "ş", "š", "ș", "s"]
+      A1: ["Ӕ", "Å", "Ä", "Ã", "Â", "Á", "Ą", "4", "A", "?"],
+      S1: ["Ś", "Ŝ", "Ş", "$", "Ș", "Ş", "5", "S", "?", "!"],
+      C: ["Ç", "Ć", "Ĉ", "Ċ", "Č", "Č", "<", "C", "?", "!"],
+      I1: ["1", "1", "Ì", "Í", "Î", "Ï", "Ĭ", "ĺ", "I", "?"],
+      I2: ["1", "1", "Ì", "Í", "Î", "Ï", "Ĭ", "ĺ", "I", "?"],
+      I3: ["1", "1", "Ì", "Í", "Î", "Ï", "Ĭ", "ĺ", "I", "?"],
+      M: ["μ", "Ѧ", "ҧ", "м", "m", "?", "$", "%", "!", "@"],
+      A2: ["@", "à", "á", "â", "ã", "ä", "å", "a", "!", "@"],
+      G: ["ĝ", "&", "ğ", "ġ", "8", "ǵ", "9", "g", "!", "@"],
+      E: ["ȅ", "ȇ", "ё", "έ", "з", "e", "?", "$", "%", "!"],
+      S2: ["ś", "ŝ", "ş", "š", "ș", "s", "?", "$", "%", "!"]
     };
   },
   mounted() {
-    setInterval(() => {
+    let anim_1, anim_2, anim_3, anim_4, anim_5;
+    let anim_6, anim_7, anim_8, anim_9, anim_10, anim_11;
+
+    anim_1 = setInterval(() => {
       this.logo.a1 = this.A1[Math.floor(Math.random() * 10) % this.A1.length];
-      this.logo.s1 = this.S1[Math.floor(Math.random() * 10) % this.S1.length];
-      this.logo.c = this.C[Math.floor(Math.random() * 10) % this.C.length];
-      this.logo.i1 = this.I1[Math.floor(Math.random() * 10) % this.I1.length];
-      this.logo.i2 = this.I2[Math.floor(Math.random() * 10) % this.I2.length];
-      this.logo.i3 = this.I3[Math.floor(Math.random() * 10) % this.I3.length];
-      this.logo.m = this.M[Math.floor(Math.random() * 10) % this.M.length];
-      this.logo.a2 = this.A2[Math.floor(Math.random() * 10) % this.A2.length];
-      this.logo.g = this.G[Math.floor(Math.random() * 10) % this.G.length];
-      this.logo.e = this.E[Math.floor(Math.random() * 10) % this.E.length];
-      this.logo.s2 = this.S2[Math.floor(Math.random() * 10) % this.S2.length];
-    }, 700);
+    }, 100);
+    this.logo.s1 = "";
+
+    setTimeout(() => {
+      anim_2 = setInterval(() => {
+        this.logo.s1 = this.S1[Math.floor(Math.random() * 10) % this.S1.length];
+      }, 100);
+      this.logo.c = "";
+    }, 200);
+
+    setTimeout(() => {
+      anim_3 = setInterval(() => {
+        this.logo.c = this.C[Math.floor(Math.random() * 10) % this.C.length];
+      }, 100);
+      this.logo.i1 = "";
+    }, 400);
+
+    setTimeout(() => {
+      anim_4 = setInterval(() => {
+        this.logo.i1 = this.I1[Math.floor(Math.random() * 10) % this.I1.length];
+      }, 100);
+      this.logo.i2 = "";
+    }, 600);
+
+    setTimeout(() => {
+      anim_5 = setInterval(() => {
+        this.logo.i2 = this.I2[Math.floor(Math.random() * 10) % this.I2.length];
+      }, 100);
+      this.logo.i3 = "";
+    }, 800);
+
+    setTimeout(() => {
+      anim_6 = setInterval(() => {
+        this.logo.i3 = this.I3[Math.floor(Math.random() * 10) % this.I3.length];
+      }, 100);
+      this.logo.m = "";
+    }, 1000);
+
+    setTimeout(() => {
+      anim_7 = setInterval(() => {
+        this.logo.m = this.M[Math.floor(Math.random() * 10) % this.M.length];
+      }, 100);
+      this.logo.a2 = "";
+    }, 1200);
+
+    setTimeout(() => {
+      anim_8 = setInterval(() => {
+        this.logo.a2 = this.A2[Math.floor(Math.random() * 10) % this.A2.length];
+      }, 100);
+      this.logo.g = "";
+    }, 1400);
+
+    setTimeout(() => {
+      anim_9 = setInterval(() => {
+        this.logo.g = this.G[Math.floor(Math.random() * 10) % this.G.length];
+      }, 100);
+      this.logo.e = "";
+    }, 1600);
+
+    setTimeout(() => {
+      anim_10 = setInterval(() => {
+        this.logo.e = this.E[Math.floor(Math.random() * 10) % this.E.length];
+      }, 100);
+      this.logo.s2 = "";
+    }, 1800);
+
+    setTimeout(() => {
+      anim_11 = setInterval(() => {
+        this.logo.s2 = this.S2[Math.floor(Math.random() * 10) % this.S2.length];
+      }, 100);
+    }, 2000);
+
+    //  ending
+
+    setTimeout(() => {
+      clearInterval(anim_1);
+      this.logo.a1 = "A";
+    }, 1000);
+    setTimeout(() => {
+      clearInterval(anim_2);
+      this.logo.s1 = "S";
+    }, 1200);
+    setTimeout(() => {
+      clearInterval(anim_3);
+      this.logo.c = "C";
+    }, 1400);
+    setTimeout(() => {
+      clearInterval(anim_4);
+      this.logo.i1 = "I";
+    }, 1600);
+    setTimeout(() => {
+      clearInterval(anim_5);
+      this.logo.i2 = "I";
+    }, 1800);
+    setTimeout(() => {
+      clearInterval(anim_6);
+      this.logo.i3 = "I";
+    }, 2000);
+    setTimeout(() => {
+      clearInterval(anim_7);
+      this.logo.m = "m";
+    }, 2200);
+    setTimeout(() => {
+      clearInterval(anim_8);
+      this.logo.a2 = "a";
+    }, 2400);
+    setTimeout(() => {
+      clearInterval(anim_9);
+      this.logo.g = "g";
+    }, 2600);
+    setTimeout(() => {
+      clearInterval(anim_10);
+      this.logo.e = "e";
+    }, 2800);
+
+    setTimeout(() => {
+      clearInterval(anim_11);
+      this.logo.s2 = "s";
+    }, 3000);
+
+    setTimeout(() => {
+      document.getElementsByTagName("nav")[0].style.opacity = "1";
+    }, 3200);
   },
   methods: {
     pause: function(milliseconds) {
@@ -107,7 +211,6 @@ header {
   justify-content: center;
   transition: 0.3s;
   user-select: none;
-  // border: 1px solid #000;
 }
 
 #logo {
@@ -130,6 +233,8 @@ nav {
   align-items: center;
   margin: 0 auto;
   margin-top: 20px;
+  opacity: 0;
+  transition: all 1s;
 
   span {
     width: 130px;

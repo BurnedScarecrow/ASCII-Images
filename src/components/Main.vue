@@ -144,6 +144,7 @@
 export default {
   data() {
     return {
+      fixedWidth: null,
       filename: "",
       compressed: null,
       container: null,
@@ -198,7 +199,10 @@ export default {
     },
 
     checkWidth: function() {
-      if (window.innerWidth > 1024) {
+      if (this.fixedWidth > 0) {
+        this.oldWidth = this.fixedWidth;
+        this.WIDTH = this.fixedWidth;
+      } else if (window.innerWidth > 1024) {
         this.WIDTH = (window.innerWidth * 0.9) / 2 - 100;
       } else {
         this.WIDTH = window.innerWidth * 0.9 - 50;
