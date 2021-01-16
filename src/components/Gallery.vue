@@ -27,8 +27,6 @@
 <script>
 import Card from "@/components/Card.vue";
 
-// import i1 from "@/assets/gallery/1.png";
-// import i2 from "@/assets/gallery/2.png";
 import i3 from "@/assets/gallery/3.png";
 import i4 from "@/assets/gallery/4.png";
 import i5 from "@/assets/gallery/5.png";
@@ -45,8 +43,6 @@ import i15 from "@/assets/gallery/15.png";
 import i16 from "@/assets/gallery/16.png";
 import i17 from "@/assets/gallery/17.png";
 
-// import t1 from "raw-loader!@/assets/txt/1.txt";
-// import t2 from "raw-loader!@/assets/txt/2.txt";
 import t3 from "raw-loader!@/assets/txt/3.txt";
 import t4 from "raw-loader!@/assets/txt/4.txt";
 import t5 from "raw-loader!@/assets/txt/5.txt";

@@ -1,0 +1,12 @@
+    XXXXXXXXXXXXXX          XXXXX 
+   XXXXXXXXXXXXXXXX       XXXXXXXXX 
+  XXXXXXXXXXXXXX  XX     XXXXXXXXXXX
+ XXXXXXXXXXXXXX    XX    XXXXXXXXXXX 
+XXXXXXXXXXXXXX      XX    XXXXXXXXX  
+ X          X       X       XXXXX
+ X  XX  XX  X  XXX  X         X
+ X  XX  XX  X  XXX  X         X
+ X          X  XXX  X         X
+ XXXXXXXXXXXXXXXXXXXX         X
+
+ Дом и дерево - "Art Typing" (1962)

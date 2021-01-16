@@ -450,7 +450,6 @@ export default {
         let imageData = ctx.getImageData(0, 0, cols, rows);
         ctx.putImageData(this.contrastImage(imageData, this.contrast), 0, 0);
 
-        // let pixels = ctx.getImageData(0, 0, cols, rows).data;
         let pixels = imageData.data;
         let col = 1;
         this.output = "";

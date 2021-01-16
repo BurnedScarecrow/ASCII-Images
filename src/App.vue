@@ -1,22 +1,32 @@
 <template>
   <div id="app">
-    <Logo
-      :activeTab="comp"
-      @showGallery="showGallery()"
-      @showConverter="showConverter()"
-      @hideAll="hideAll()"
-      ref="header"
-      id="header"
-    />
-    <section id="content">
-      <Main
-        ref="converter"
-        v-show="comp == 'converter'"
-        @showCopy="showCopy()"
-        @hideCopy="hideCopy()"
+    <transition name="fade">
+      <Logo
+        v-show="!showInfo"
+        :activeTab="comp"
+        @showGallery="showGallery()"
+        @showConverter="showConverter()"
+        @hideAll="hideAll()"
+        ref="header"
+        id="header"
       />
-      <Gallery v-show="comp == 'gallery'" />
-    </section>
+    </transition>
+    <transition name="fade">
+      <section id="content" v-show="!showInfo">
+        <Main
+          ref="converter"
+          v-show="comp == 'converter'"
+          @showCopy="showCopy()"
+          @hideCopy="hideCopy()"
+        />
+        <Gallery v-show="comp == 'gallery'" />
+      </section>
+    </transition>
+    <transition name="fade">
+      <section v-if="showInfo" id="information">
+        <Info />
+      </section>
+    </transition>
 
     <div class="round-buttons">
       <div
@@ -61,10 +71,9 @@
           />
         </svg>
       </div>
-      <div id="q-button" @click="showHelp()">
+      <div id="q-button" @click="showInfo = !showInfo">
         <svg
-          width="64"
-          height="64"
+          v-show="!showInfo"
           viewBox="0 0 64 64"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +87,20 @@
             fill="black"
           />
         </svg>
+
+        <svg
+          id="times"
+          v-show="showInfo"
+          width="15px"
+          height="15px"
+          viewBox="0 0 10 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.83551 0.164908C9.61608 -0.0549347 9.26009 -0.0549345 9.04066 0.1647L5.00022 4.20202L0.959365 0.1647C0.739939 -0.0549345 0.383944 -0.0549347 0.164518 0.164908C-0.0549086 0.384542 -0.0549085 0.740538 0.164934 0.959756L4.20475 4.99645L0.164934 9.03314C-0.0549085 9.25257 -0.0549086 9.60835 0.164518 9.82778C0.274231 9.9377 0.418294 9.99266 0.562149 9.99266C0.706005 9.99266 0.84986 9.9377 0.959365 9.8282L5.00001 5.79088L9.04045 9.8282C9.15017 9.9377 9.29402 9.99266 9.43767 9.99266C9.58173 9.99266 9.72559 9.9377 9.8353 9.82778C10.0547 9.60815 10.0547 9.25236 9.83488 9.03314L5.79507 4.99645L9.83488 0.959756C10.0549 0.740538 10.0549 0.384542 9.83551 0.164908Z"
+          />
+        </svg>
       </div>
     </div>
     <div id="popUp"><span v-html="msg"></span></div>
@@ -88,16 +111,19 @@
 import Main from "./components/Main.vue";
 import Logo from "./components/Logo.vue";
 import Gallery from "./components/Gallery.vue";
+import Info from "./components/Info.vue";
 
 export default {
   name: "App",
   components: {
     Gallery,
     Logo,
-    Main
+    Main,
+    Info
   },
   data() {
     return {
+      showInfo: false,
       rootElement: document.documentElement,
       comp: "",
       copyEnabled: false,
@@ -143,10 +169,6 @@ export default {
         this.comp = "gallery";
         document.getElementById("header").style.height = "80px";
       }
-    },
-
-    showHelp: function() {
-      this.toast(`Скоро тут что-то будет`);
     },
 
     showConverter: function() {
@@ -251,7 +273,7 @@ body {
 .round-buttons {
   width: 50px;
   height: fit-content;
-  z-index: 1001;
+  z-index: 1201;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -279,10 +301,6 @@ body {
     transition: 0.3s;
     overflow: hidden;
 
-    &#copy-button svg {
-      width: 15px;
-    }
-
     svg {
       border-radius: 50%;
       width: 50px;
@@ -292,6 +310,14 @@ body {
         fill: var(--bgColor);
         transition: 0.3s;
       }
+    }
+
+    &#copy-button svg {
+      width: 15px;
+    }
+
+    &#q-button svg#times {
+      width: 15px;
     }
 
     &#top-button {
@@ -308,11 +334,29 @@ body {
     }
   }
 }
+
+#information {
+  position: absolute;
+  top: 0px;
+  background: var(--bgColor);
+  width: 100%;
+  min-height: calc(100vh - 50px);
+  z-index: 1200;
+}
+
 @media screen and (max-width: 414px) {
   #content {
     position: absolute;
     top: 130px;
     width: 100%;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
 }
 </style>
