@@ -5,7 +5,7 @@
         type="file"
         ref="myFiles"
         hidden
-        accept=".png,.jpg,.gif,.bmp"
+        accept=".png,.jpg,.gif,.bmp,.jpeg"
         id="file"
         @change="onFileChange($event)"
       />
@@ -317,6 +317,7 @@ export default {
       chars: `$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,"^\`'.\u00A0`
     };
   },
+
   mounted() {
     this.checkWidth();
     this.oldWidth = this.WIDTH;
@@ -457,14 +458,25 @@ export default {
           let r = pixels[i];
           let g = pixels[i + 1];
           let b = pixels[i + 2];
-          let luminance =
-            (r * this.lightness.r + //0.3
-            g * this.lightness.g + //0.59
-              b * this.lightness.b) / //0.11
-            3.69;
+          let a = pixels[i + 3];
 
-          if (Math.round(luminance) > 69 || Math.round(luminance) < 0) {
-            console.log("out of array");
+          let luminance = null;
+
+          if (r == 0 && g == 0 && b == 0 && a <= 10) {
+            luminance = this.chars.length - 1;
+          } else {
+            luminance =
+              (r * this.lightness.r + //0.3
+              g * this.lightness.g + //0.59
+                b * this.lightness.b) / //0.11
+              (255 / (this.chars.length - 1));
+          }
+
+          if (
+            Math.round(luminance) > this.chars.length - 1 ||
+            Math.round(luminance) < 0
+          ) {
+            console.log(luminance, "out of array");
           }
 
           let c = null;

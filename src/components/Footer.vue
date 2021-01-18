@@ -26,7 +26,18 @@
         <img src="@/assets/info/vue.svg" alt="" />
       </a>
     </div>
-    <div>Cawa prod. &copy; 2021 {{ data > 2021 ? `- ${data}` : "" }}</div>
+    <div>
+      <a
+        href="https://github.com/BurnedScarecrow/"
+        target="_blank"
+        title="Made with ❤️ by BurnedScarecrow (Cawa)"
+      >
+        Cawa prod.
+      </a>
+      <span class="copyright" v-show="copyright"> &copy;</span>
+      <span class="copyright" v-show="!copyright"> ❤️</span> 2021
+      {{ data > 2021 ? `- ${data}` : "" }}
+    </div>
   </footer>
 </template>
 
@@ -34,11 +45,20 @@
 export default {
   data() {
     return {
-      data: 2021
+      data: 2021,
+      copyright: true
     };
   },
   mounted() {
     this.data = new Date().getFullYear;
+    setInterval(() => {
+      setTimeout(() => {
+        this.copyright = !this.copyright;
+      }, 500);
+      setTimeout(() => {
+        this.copyright = !this.copyright;
+      }, 1000);
+    }, 7000);
   }
 };
 </script>
@@ -57,6 +77,13 @@ footer {
   justify-content: space-between;
   align-items: center;
 
+  .copyright {
+    display: inline-flex;
+    width: 20px;
+    line-height: 20px;
+    justify-content: center;
+  }
+
   img {
     height: 40px;
   }
@@ -72,6 +99,11 @@ footer {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--bg-text);
   }
 
   #author {
